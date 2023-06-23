@@ -1,0 +1,1 @@
+# danbooru-tags-i18n
