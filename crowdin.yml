@@ -1,3 +1,3 @@
 files:
-  - source: /src/crowdin/*.json
+  - source: /src/crowdin/*.csv
     translation: /i18n/%two_letters_code%/%file_name%_%two_letters_code%%file_extension%
