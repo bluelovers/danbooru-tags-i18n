@@ -2,7 +2,7 @@ import Bluebird from 'bluebird';
 import { getSegment, stringify } from 'novel-segment-cli';
 import { EnumDictDatabase } from '@novel-segment/types';
 import { Segment } from 'novel-segment/lib';
-import { cn2tw_min } from '@lazy-cjk/zh-convert/min';
+import { cn2tw_min, tw2cn_min } from '@lazy-cjk/zh-convert/min';
 import { load as loadSynonym } from '@novel-segment/loaders/segment/synonym';
 import { load as loadTable } from '@novel-segment/loaders/segment/index';
 import { join } from 'path';
@@ -91,12 +91,15 @@ export function initIdeaSegmentText()
 		})
 }
 
-export function processTextSync(input: string)
+export function processTextSync(input: string, opts?: {
+	toCN?: boolean,
+	noSeg?: boolean,
+})
 {
-	let data = inited.doSegment(input);
-	let text = stringify(data);
+	opts ??= {};
+	let text = opts.noSeg ? input : stringify(inited.doSegment(input));
 
-	text = cn2tw_min(text);
+	text = (opts.toCN ? tw2cn_min : cn2tw_min)(text);
 
 	return text
 }
