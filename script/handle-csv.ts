@@ -61,7 +61,11 @@ function transformCSV(lang: 'zh-CN' | 'zh-TW')
 				record.value = processTextSync(record.value);
 			}
 
-			record.tag = record.tag.replace(/\uFEFF/g, '')
+			record.tag = record.tag
+				.replace(/\uFEFF/g, '')
+				.trim()
+				.replace(/\s+/g, '_')
+			;
 
 			return record;
 		}),
