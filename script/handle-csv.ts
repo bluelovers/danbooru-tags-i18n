@@ -53,7 +53,7 @@ function transformCSV(lang: 'zh-CN' | 'zh-TW')
 			{
 				record.value = processTextSync(record.value, {
 					toCN: true,
-					noSeg: true,
+					//noSeg: true,
 				});
 			}
 			else
